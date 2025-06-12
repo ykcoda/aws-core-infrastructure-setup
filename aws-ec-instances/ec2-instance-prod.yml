@@ -1,0 +1,16 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description:
+
+
+
+Resources: 
+  ProdEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties: 
+      ImageId: 
+      InstanceType: 
+      SecurityGroupIds:
+        - sg-id
+      Tags:
+        - Key: key
+          Value: value

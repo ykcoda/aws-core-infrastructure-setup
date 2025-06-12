@@ -1,0 +1,122 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: AWS Core Network Template
+
+
+#Metadata: 
+
+#Parameters: 
+
+
+Resources:
+  Production2VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.1.0.0/16
+      EnableDnsHostnames: true
+      EnableDnsSupport: true
+      Tags: 
+        - Key: Name
+          Value: Production2VPC
+        - Key: Environment
+          Value: Production2
+
+  Production2PublicSubnet1:  
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: "us-east-1a"
+      CidrBlock: 10.1.0.0/24
+      MapPublicIpOnLaunch: true
+      Tags: 
+        - Key: Name
+          Value: Production2PublicSubnet1
+        - Key: Environment
+          Value: Production2
+      VpcId: !Ref Production2VPC
+
+  Production2PublicSubnet2:  
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: "us-east-1b"
+      CidrBlock: 10.1.1.0/24
+      MapPublicIpOnLaunch: true
+      Tags: 
+        - Key: Name
+          Value: Production2PublicSubnet2
+        - Key: Environment
+          Value: Production2
+      VpcId: !Ref Production2VPC
+
+  Production2PrivateSubnet1:  
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: "us-east-1a"
+      CidrBlock: 10.1.2.0/24
+      MapPublicIpOnLaunch: true
+      Tags: 
+        - Key: Name
+          Value: Production2PrivateSubnet1
+        - Key: Environment
+          Value: Production2
+      VpcId: !Ref Production2VPC
+
+  Production2PrivateSubnet2:  
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: "us-east-1b"
+      CidrBlock: 10.1.3.0/24
+      MapPublicIpOnLaunch: true
+      Tags: 
+        - Key: Name
+          Value: Production2PrivateSubnet2
+        - Key: Environment
+          Value: Production2
+      VpcId: !Ref Production2VPC
+
+  Production2VPCIntGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags: 
+        - Key: Name
+          Value: Production2IntGateway
+        - Key: Environment
+          Value: Production2
+
+  Production2VPCGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref Production2VPC
+      InternetGatewayId: !Ref Production2VPCIntGateway
+
+  Prod2PublicRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref Production2VPC
+      Tags: 
+        - Key: Name
+          Value: Prod2PublicRouteTable
+        - Key: Environment
+          Value: Production2
+
+  Prod2PublicRoute:
+    Type: AWS::EC2::Route
+    Properties:
+       RouteTableId:
+         Ref: Prod2PublicRouteTable
+       DestinationCidrBlock: 0.0.0.0/0
+       GatewayId:
+         Ref: Production2VPCIntGateway
+
+  Prod2PublicSubnet1RouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref Prod2PublicRouteTable
+      SubnetId: !Ref Production2PublicSubnet1
+
+  Prod2PublicSubnet2RouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref Prod2PublicRouteTable
+      SubnetId: !Ref Production2PublicSubnet2
+
+
+#Outputs:

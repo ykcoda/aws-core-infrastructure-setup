@@ -106,5 +106,19 @@ Resources:
        GatewayId:
          Ref: ProductionVPCIntGateway
 
+  ProdPublicSubnet1RouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref ProdPublicRouteTable
+      SubnetId: !Ref ProductionPublicSubnet1
+
+  ProdPublicSubnet2RouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref ProdPublicRouteTable
+      SubnetId: !Ref ProductionPublicSubnet2
+
+
+
 
 #Outputs:

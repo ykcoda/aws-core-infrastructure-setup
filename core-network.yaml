@@ -77,7 +77,7 @@ Resources:
     Properties:
       Tags: 
         - Key: Name
-          Value: ProductionVPC
+          Value: ProductionIntGateway
         - Key: Environment
           Value: Production
 
@@ -87,7 +87,23 @@ Resources:
       VpcId: !Ref ProductionVPC
       InternetGatewayId: !Ref ProductionVPCIntGateway
 
+  ProdPublicRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref ProductionVPC
+      Tags: 
+        - Key: Name
+          Value: ProdPublicRouteTable
+        - Key: Environment
+          Value: Production
+
+  myRoute:
+    Type: AWS::EC2::Route
+    DependsOn: GatewayToInternet
+    Properties:
+       RouteTableId: !Ref ProdPublicRouteTable
+       DestinationCidrBlock: 0.0.0.0/0
+       GatewayId: !Ref ProductionVPCIntGateway
 
 
-      
 #Outputs:

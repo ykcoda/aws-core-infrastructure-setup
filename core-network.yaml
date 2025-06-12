@@ -17,6 +17,9 @@ Resources:
     Tags: 
       - Key: Name
         Value: ProductionVPC
+      - Key: Environment
+        Value: Production
+    
 
 
 Outputs:

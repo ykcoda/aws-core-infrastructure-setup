@@ -1,9 +1,9 @@
 version: 0.2
 
 phases:
-  runtime-versions:
-    nodejs: 20
   install:
+    runtime-versions: 
+      nodejs: 20
     commands:
       - echo Entered the install phase...
       - npm install -g @angular/cli

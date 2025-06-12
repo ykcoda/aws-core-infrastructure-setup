@@ -119,6 +119,9 @@ Resources:
       SubnetId: !Ref ProductionPublicSubnet2
 
 
-
-
-#Outputs:
+Outputs:
+  ProductionVPCID:
+    Description: ProductionVPC ID
+    Value: !Ref ProductionVPC
+    Export:
+      Name: ProductionVPC-ID

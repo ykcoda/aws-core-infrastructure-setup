@@ -118,5 +118,12 @@ Resources:
       RouteTableId: !Ref Prod2PublicRouteTable
       SubnetId: !Ref Production2PublicSubnet2
 
-
+  Production2VPCPeerProductionVPC:
+      Type: AWS::EC2::VPCPeeringConnection
+      Properties:
+        VpcId: !Ref Production2VPC
+        PeerVpcId: !ImportValue ProductionVPC-ID
+        Tags:
+          - Key: Name
+            Value: Production2VPC--to-ProductionVPC
 #Outputs:

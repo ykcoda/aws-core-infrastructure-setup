@@ -125,5 +125,5 @@ Resources:
         PeerVpcId: !ImportValue ProductionVPC-ID
         Tags:
           - Key: Name
-            Value: Production2VPC--to-ProductionVPC
+            Value: Production2VPC-to-ProductionVPC
 #Outputs:

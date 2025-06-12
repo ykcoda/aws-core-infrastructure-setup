@@ -97,7 +97,14 @@ Resources:
         - Key: Environment
           Value: Production
 
- 
+  ProdPublicRoute:
+    Type: AWS::EC2::Route
+    Properties:
+       RouteTableId:
+         Ref: ProdPublicRouteTable
+       DestinationCidrBlock: 0.0.0.0/0
+       GatewayId:
+         Ref: ProductionVPCIntGateway
 
 
 #Outputs:

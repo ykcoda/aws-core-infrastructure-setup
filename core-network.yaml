@@ -2,9 +2,9 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: AWS Core Network Template
 
 
-Metadata: 
+#Metadata: 
 
-Parameters: 
+#Parameters: 
 
 
 Resources:
@@ -22,4 +22,4 @@ Resources:
     
 
 
-Outputs:
+#Outputs:

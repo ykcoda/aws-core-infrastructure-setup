@@ -71,4 +71,23 @@ Resources:
         - Key: Environment
           Value: Production
       VpcId: !Ref ProductionVPC
+
+  ProductionVPCIntGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags: 
+        - Key: Name
+          Value: ProductionVPC
+        - Key: Environment
+          Value: Production
+
+  ProductionVPCGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref ProductionVPC
+      InternetGatewayId: !Ref ProductionVPCIntGateway
+
+
+
+      
 #Outputs:

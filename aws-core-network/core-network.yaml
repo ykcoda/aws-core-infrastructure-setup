@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: AWS Core Network Template
+Description: AWS Core Network Template for Production Environment
 
 
 #Metadata: 

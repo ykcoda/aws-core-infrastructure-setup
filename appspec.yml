@@ -1,0 +1,20 @@
+version: 0.0
+os: linux
+files:
+  - source: dist/my-angular-project
+    destination: /var/www/angular-app
+permissions:
+  - object: object-specification
+    pattern: '**'
+    owner: root
+    group: root
+    mode: '0755'
+    type:
+      - file
+      - directory
+
+
+hooks:
+  ApplicationStart:
+    - location: scripts/nginx-restart.sh
+      timeout: 300

@@ -19,7 +19,56 @@ Resources:
           Value: ProductionVPC
         - Key: Environment
           Value: Production
-    
 
+  ProductionPublicSubnet1:  
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: "us-east-1a"
+      CidrBlock: 10.0.0.0/24
+      MapPublicIpOnLaunch: true
+      Tags: 
+        - Key: Name
+          Value: ProductionPublicSubnet1
+        - Key: Environment
+          Value: Production
+      VpcId: !Ref ProductionVPC
 
+  ProductionPublicSubnet2:  
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: "us-east-1b"
+      CidrBlock: 10.0.1.0/24
+      MapPublicIpOnLaunch: true
+      Tags: 
+        - Key: Name
+          Value: ProductionPublicSubnet2
+        - Key: Environment
+          Value: Production
+      VpcId: !Ref ProductionVPC
+
+  ProductionPrivateSubnet1:  
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: "us-east-1a"
+      CidrBlock: 10.0.2.0/24
+      MapPublicIpOnLaunch: true
+      Tags: 
+        - Key: Name
+          Value: ProductionPrivateSubnet1
+        - Key: Environment
+          Value: Production
+      VpcId: !Ref ProductionVPC
+
+  ProductionPrivateSubnet2:  
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: "us-east-1b"
+      CidrBlock: 10.0.3.0/24
+      MapPublicIpOnLaunch: true
+      Tags: 
+        - Key: Name
+          Value: ProductionPrivateSubnet2
+        - Key: Environment
+          Value: Production
+      VpcId: !Ref ProductionVPC
 #Outputs:
